@@ -10,7 +10,9 @@
 | 4   | MOSI     |
 | 5   | MISO     |
 | 6   | CS       |
+| 7   | DETECT   |
 
+The detectpin is shorted to the CS pin on the module side
 
 ## protocol definition
 

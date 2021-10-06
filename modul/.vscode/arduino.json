@@ -1,0 +1,8 @@
+{
+    "sketch": "main.ino",
+    "board": "arduino:avr:uno",
+    "output": "./build",
+    "arduino.additionalUrls": [
+        "C:/arduino-1.8.15/**"
+    ]
+}

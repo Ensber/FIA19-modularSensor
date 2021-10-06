@@ -6,11 +6,9 @@
 |-----|----------|
 | 1   | 5V       |
 | 2   | 3.3V     |
-| 3   | BLOCKED  |
-| 4   | MOSI     |
-| 5   | MISO     |
-| 6   | CS       |
-| 7   | DETECT   |
+| 3   | MOSI     |
+| 4   | MISO     |
+| 5   | CS       |
 
 The detectpin is shorted to the CS pin on the module side
 

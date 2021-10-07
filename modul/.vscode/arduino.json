@@ -1,9 +1,8 @@
 {
-    "sketch": "main.ino",
     "board": "arduino:avr:uno",
-    "output": "./build",
     "arduino.additionalUrls": [
         "C:/arduino-1.8.15/**"
     ],
-    "port": "COM4"
+    "port": "COM4",
+    "sketch": "main.ino"
 }

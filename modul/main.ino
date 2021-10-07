@@ -27,7 +27,10 @@ void handleResieve()
 {
    byte c = SPDR; // read byte from SPI Data Register
    //wann ist denn ein "Datensatz" angekommen
-   Serial.println(c);
+   if(c == 0x15)
+      Serial.println("have resieved 0x15");
+   else
+      Serial.println(c);
    spiSend(200);
    
 }

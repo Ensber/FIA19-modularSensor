@@ -4,5 +4,6 @@
     "output": "./build",
     "arduino.additionalUrls": [
         "C:/arduino-1.8.15/**"
-    ]
+    ],
+    "port": "COM4"
 }

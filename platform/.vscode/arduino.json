@@ -3,5 +3,6 @@
     "arduino.additionalUrls": [
         "C:/arduino-1.8.15/**"
     ],
-    "port": "COM6"
+    "port": "COM6",
+    "sketch": "main.ino"
 }

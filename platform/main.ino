@@ -1,16 +1,28 @@
-#include "SPI.h"
-char buff[]="Hello Slave\r\n";
+#include "spicommunication.h"
+
+SPICommunication_c* spiCom;
+uint16 buff=1;
+
+void log(char* msg);
 
 void setup() {
    Serial.begin(9600);
-   SPI.begin();
+
+   spiCom = new SPICommunication_c;
+   spiCom->initCom(true);
 }
 
 
 void loop() {
- for(int i=0; i<sizeof buff; i++)
- {
-   SPI.transfer(buff[i]);
- }
- delay(1000);  
+  if( spiCom->canInitCom() )
+  {
+    spiCom->sendData( buff, sizeof buff );
+    log("gesendet");
+  }
+  delay(5000);
+}
+
+void log(char* msg)
+{
+  Serial.println(msg);
 }

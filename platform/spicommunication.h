@@ -1,11 +1,19 @@
+#ifndef SPICOMMUNICATION_H
+#define SPICOMMUNICATION_H
+
 #include "SPI.h"
 
-class SPICommunication_c
+class SPICommunication_c : private SPIClass
 {
 public:
-    void startCom();
-    void sendData( char* p_data );
+    void initCom( bool p_isMaster );
+    void sendData( uint16_t p_pData, unsigned int p_size );
+
+    bool canInitCom();
 
 private:
-    char* m_dataToSend;
-}
+    bool m_canInitCom = false;
+
+};
+
+#endif //SPICOMMUNICATION_H

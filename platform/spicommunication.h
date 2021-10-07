@@ -7,7 +7,7 @@ class SPICommunication_c : private SPIClass
 {
 public:
     void initCom();
-    void sendData( uint8_t p_pData, unsigned int p_size );
+    void sendData( void* p_pTxData, unsigned int p_size );
     byte getLastRecievedByte();
 
     bool canInitCom();

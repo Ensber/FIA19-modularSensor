@@ -6,6 +6,6 @@
         "C:/Users/KaffeMaus/Documents/Arduino/libraries/**"
     ],
     "port": "COM6",
-    "sketch": "main.ino",
-    "arduino.baudrate": "9600"
+    "arduino.baudrate": "9600",
+    "sketch": "main.ino"
 }

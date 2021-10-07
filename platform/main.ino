@@ -1,7 +1,7 @@
 #include "spicommunication.h"
 
 SPICommunication_c* spiCom;
-uint8_t buff=15;
+byte buff[]={0x05};
 
 void log(char* msg);
 

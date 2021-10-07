@@ -8,7 +8,6 @@ void setup() {
 
 
 void loop() {
- Serial.println("Send String: " + String(buff) );
  for(int i=0; i<sizeof buff; i++)
  {
    SPI.transfer(buff[i]);

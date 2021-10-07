@@ -6,14 +6,15 @@
 class SPICommunication_c : private SPIClass
 {
 public:
-    void initCom( bool p_isMaster );
-    void sendData( uint16_t p_pData, unsigned int p_size );
+    void initCom();
+    void sendData( uint8_t p_pData, unsigned int p_size );
+    byte getLastRecievedByte();
 
     bool canInitCom();
 
 private:
     bool m_canInitCom = false;
-
+    byte m_lastRecievedByte = 0;
 };
 
 #endif //SPICOMMUNICATION_H

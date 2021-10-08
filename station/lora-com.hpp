@@ -2,7 +2,7 @@
 #define LORA_MANAGER_HPP
 
 #include <LoRa.h>
-#include "../common/lora.hpp"
+#include "lora.hpp"
 
 class lora_manager_class {
     public:

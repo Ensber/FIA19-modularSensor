@@ -1,5 +1,4 @@
-#include "lora-com.hpp"
-#include "lora-com.cpp"
+#include "lora.hpp"
 
 void setup() {
     Serial.begin(115200);

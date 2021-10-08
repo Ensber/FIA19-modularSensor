@@ -1,0 +1,11 @@
+{
+    "board": "esp8266:esp8266:espino",
+    "arduino.additionalUrls": [
+        "C:/arduino-1.8.15/**",
+        "./",
+        "C:/Users/KaffeMaus/Documents/Arduino/libraries/**"
+    ],
+    "port": "COM6",
+    "sketch": "main.ino",
+    "output": "./build"
+}

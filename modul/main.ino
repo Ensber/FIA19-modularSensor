@@ -1,8 +1,21 @@
 #include "SPI.h"
 
-char buff [50];
+typedef union __attribute__((packet)) bdouble {
+   double number;
+   uint8_t data[8];
+};
+
+byte buff [255];
 volatile byte indx;
 volatile boolean byteResieved;
+byte testAr[8] = {0,0,0,0,0,0,0,0};
+double testd =0;
+
+bdouble test_double = {0.0};
+
+void conv(double d, byte *arr) {
+   memcpy((void*)arr, (void*)&d, 8);
+}
 
 void initSPICom()
 {
@@ -13,11 +26,6 @@ void initSPICom()
    SPI.attachInterrupt(); // turn on interrupt
 }
 
-void setup (void) {
-   Serial.begin (9600);
-   initSPICom();
-}
-
 void spiSend(int8_t p_byteToSend)
 {
    SPI.transfer(p_byteToSend);
@@ -25,8 +33,10 @@ void spiSend(int8_t p_byteToSend)
 
 void handleResieve()
 {
+   
    byte c = SPDR; // read byte from SPI Data Register
-   //wann ist denn ein "Datensatz" angekommen
+   testd=testd<<8;
+
    if(c == 0x15)
       Serial.println("have resieved 0x15");
    else
@@ -40,9 +50,20 @@ ISR (SPI_STC_vect) // SPI interrupt routine
    handleResieve();
 }
 
+//************************************************************************
+
+
+
+
+void setup (void) {
+   Serial.begin (9600);
+   initSPICom();
+}
+
+
 void loop (void) {
    if (byteResieved) {
-      Serial.println (buff); //print the array on serial monitor
+      //Serial.println (buff); //print the array on serial monitor
       indx= 0; //reset button to zero
    }
 }

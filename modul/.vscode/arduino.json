@@ -1,4 +1,5 @@
 {
+    "output": "./build",
     "board": "arduino:avr:uno",
     "arduino.additionalUrls": [
         "C:/arduino-1.8.15/**"

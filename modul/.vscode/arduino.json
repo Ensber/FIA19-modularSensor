@@ -2,8 +2,9 @@
     "output": "./build",
     "board": "arduino:avr:uno",
     "arduino.additionalUrls": [
-        "C:/arduino-1.8.15/**"
+        "C:/arduino-1.8.15/**",
+        "D:/work/FIA19-modularSensor/common/**"
     ],
-    "port": "COM4",
+    "port": "COM9",
     "sketch": "main.ino"
 }

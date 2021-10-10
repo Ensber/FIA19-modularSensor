@@ -5,7 +5,7 @@
         "./",
         "C:/Users/KaffeMaus/Documents/Arduino/libraries/**"
     ],
-    "port": "COM6",
+    "port": "COM3",
     "sketch": "main.ino",
     "output": "./build"
 }

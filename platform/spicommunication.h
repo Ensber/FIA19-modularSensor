@@ -3,18 +3,18 @@
 
 #include "SPI.h"
 
-class SPICommunication_c : private SPIClass
+class SPICommunication_c
 {
 public:
     void initCom();
     void sendData( void* p_pTxData, unsigned int p_size );
-    byte getLastRecievedByte();
-
+    void sendData( void* p_pTxData, unsigned int p_size, void* p_pRxData );
+    uint8_t* getLastResponse();
     bool canInitCom();
 
 private:
+    uint8_t m_lastResponse;
     bool m_canInitCom = false;
-    byte m_lastRecievedByte = 0;
 };
 
 #endif //SPICOMMUNICATION_H

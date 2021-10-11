@@ -6,6 +6,12 @@
 class CommandController_c
 {
 public:
+    struct LastResponse
+    {
+        uint8_t m_size;
+        void* m_pData;
+    };
+
     CommandController_c( SPICommunication_c* p_pSPICom );
     void setSensorModul( uint8_t p_modulID );
     void requestSensorTypeID();
@@ -13,6 +19,8 @@ public:
     void requestIfModulHaveDataToSend();
     void letModulSendRequest();
     void responseForModulRequest();
+
+    LastResponse getLastResponse();
 
 private:
 
@@ -24,6 +32,7 @@ private:
 
     SPICommunication_c* m_spiCommunication;
     uint8_t m_currentModulID = 0;
+    LastResponse m_lastResponse;
 };
 
 #endif //COMMAND_CONTROLLER_H

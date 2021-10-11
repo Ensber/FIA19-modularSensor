@@ -12,8 +12,10 @@ void CommandController_c::setSensorModul( uint8_t p_modulID )
 
 void CommandController_c::requestSensorTypeID()
 {
-    uint8_t response = 0;
-    m_spiCommunication->sendData( &m_cmdGetSensorTypeID, sizeof m_cmdGetSensorTypeID, &response );
+    uint8_t size = 20;
+    m_lastResponse.m_size = size;
+    m_lastResponse.m_pData = new char[20];
+    m_spiCommunication->sendData( &m_cmdGetSensorTypeID, size, m_lastResponse.m_pData );
     //Get Data!
 }
 
@@ -35,4 +37,9 @@ void CommandController_c::letModulSendRequest()
 void CommandController_c::responseForModulRequest()
 {
     m_spiCommunication->sendData( &m_cmdResponseForModuleRequest, sizeof m_cmdGetSensorTypeID );
+}
+
+CommandController_c::LastResponse CommandController_c::getLastResponse()
+{
+    return m_lastResponse;
 }

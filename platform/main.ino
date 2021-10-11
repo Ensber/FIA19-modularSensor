@@ -1,50 +1,126 @@
-#include "spicommunication.h"
-#include "command_controller.h"
+#include <SPI.h>
+#include "modulstructure.h"
 
-SPICommunication_c* spiCom;
-CommandController_c* cmdCtrl;
-byte buff[50];
-byte reset=0;
+#define _MDEBUG  0
+#define _MNORMAL 1
 
-void log(char* msg);
-
-void setup() {
-   Serial.begin(9600);
-
-   spiCom = new SPICommunication_c;
-   spiCom->initCom();   
-   cmdCtrl = new CommandController_c(spiCom);
-
-   reset=0xFF;
-}
+#define _SMCHECKTIMER  0x01
+#define _SMREQUESTDATA 0x02
+#define _SMEND         0x03
 
 
-void loop() {
-  if( spiCom->canInitCom() )
-  {
-    int32_t test = 273409;
-    //spiCom->sendData( &test, 4 );
-    cmdCtrl->requestSensorTypeID();
-    Serial.print("response: "); Serial.println(*spiCom->getLastResponse(), HEX);
-    
-    
-    delay(1000);
+//SPI-Commands
+#define _SLAVESENDDATA   0x00
+#define _REQUESTSENSORID 0x01
 
-    /* Todo
-    - vector uint8_t
-    - größe immer 256 byte (der Vector insgesammt) freier Speicher
-    - falls sensor 256 byte sendet, dann sollen diese verfügbar sein!
-    - loop durch sensor und dessen Responsedaten in den vector schreiben
-    */
-    
-    
-    //spiCom->sendData( &reset, 1 );
-    log("gesendet");
-  }
-  delay(5000);
-}
+//***********************CONFIG******************************
+#define _BOUDRADE 115200
+#define _DEBUGTRIGGERPIN 5
+#define _RUNMODE _MDEBUG
 
-void log(char* msg)
+//***********************GLOBAL VARS**************************
+uint8_t gCurrentState;
+tsModul gModule[_MAXMODULS];
+
+//***********************TOOLS********************************
+#if _RUNMODE == _MDEBUG
+#endif //_RUNMODE == _MDEBUG
+
+void logLine( char* p_logString )
 {
-  Serial.println(msg);
+    Serial.println(p_logString);
+}
+
+bool isResievedSensorIDsEqual( tuSensorID* p_pSensorId, tuSensorID* p_pSensorId2, uint8_t p_size )
+{
+    for( uint8_t i = 0; i < p_size; i++ )
+    {
+        if( p_pSensorId[i].data16 != p_pSensorId2[i].data16 )
+        {
+            return false;
+        }
+    }
+    return true;
+}
+
+void errorOccoured()
+{
+
+}
+
+//***********************STATE-MACHINE*************************
+void stateMachine()
+{
+    switch (gCurrentState)
+    {
+    case _SMCHECKTIMER:
+        //do something
+        break;
+    case _SMREQUESTDATA:
+        //do something
+        logLine("request data from modul");
+        SPI.transfer(_REQUESTSENSORID);
+        delay(1);
+        tuSensorID spibuffer[_MAXMODULTYPES];
+        for( uint8_t i = 0; i < _MAXMODULTYPES; i++ )
+        {
+            spibuffer[i].data16 = 0;
+        }
+        SPI.transfer(&spibuffer, _MAXMODULTYPES*2);
+        delay(1);
+        logLine("resieve data: ");
+        for(uint8_t i = 0; i < _MAXMODULTYPES; i++)
+        {
+            Serial.print((int)spibuffer[i].data16,HEX);
+            Serial.print(", ");
+        }
+        logLine("");
+
+        if( !!!isResievedSensorIDsEqual(gModule[0].modulData.sensorId, spibuffer, _MAXMODULTYPES) )
+        {
+            for(uint8_t i = 0; i < _MAXMODULTYPES; i++)
+            {
+                gModule[0].modulData.sensorId[i].data16 = spibuffer[i].data16;
+            }
+        }
+        else
+        {
+            gCurrentState = _SMCHECKTIMER;
+        }
+        //gModule[0]->modulData = spibuffer;
+        break;
+    case _SMEND:
+        //do something
+        gCurrentState = _SMCHECKTIMER;
+        break;
+    }
+}
+
+
+//***********************SETUP / LOOP**************************
+
+void setup()
+{
+    #if _RUNMODE == _MDEBUG
+    pinMode(5, INPUT_PULLUP);
+    #endif //_RUNMODE == _MDEBUG
+    
+    gCurrentState = _SMCHECKTIMER;
+
+    Serial.begin(_BOUDRADE);
+    while(!Serial){}
+    logLine("Begin Sketch");
+    SPI.begin();
+
+}
+
+void loop()
+{
+    #if _RUNMODE == _MDEBUG
+    while( digitalRead(5) == HIGH ){ delay(100); }
+    while( digitalRead(5) == LOW ){ delay(100); }
+    gCurrentState++;
+    #endif //_RUNMODE == _MDEBUG
+
+    stateMachine();
 }

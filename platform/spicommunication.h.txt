@@ -9,7 +9,8 @@ public:
     void initCom();
     void sendData( void* p_pTxData, unsigned int p_size );
     void sendData( void* p_pTxData, unsigned int p_size, void* p_pRxData );
-    uint8_t* getLastResponse();
+    void getDataByte();
+    uint8_t getLastResponse();
     bool canInitCom();
 
 private:

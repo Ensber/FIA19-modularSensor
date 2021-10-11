@@ -1,0 +1,108 @@
+#if 0
+#include <vector>
+#include <SPI.h>
+
+//#include "spicommunication.h"
+//#include "command_controller.h"
+
+//SPICommunication_c* spiCom;
+//CommandController_c* cmdCtrl;
+byte buff[50];
+
+
+void log(char* msg);
+
+void setup() {
+  Serial.begin(115200);
+  while(!Serial){}
+
+  SPI.begin();
+
+   //spiCom = new SPICommunication_c;
+   //spiCom->initCom();   
+   //cmdCtrl = new CommandController_c(spiCom);
+  pinMode(5, INPUT_PULLUP);
+}
+
+bool t = false;
+void sendCommand()
+{
+  // cmdCtrl->requestSensorTypeID();
+  // log("befehl gesendet");
+  // CommandController_c::LastResponse lr = cmdCtrl->getLastResponse();
+  // for (int i=0;i<lr.m_size;i++) Serial.print(String(*(((uint8_t*)(lr.m_pData))+i)) + ", ");
+  // Serial.println();
+  // uint8_t* cntLoop;
+  // // cntLoop = (uint8_t*)cmdCtrl->getLastResponse();
+  // Serial.print("response: "); Serial.println((uint8_t)*cntLoop);
+  // Serial.flush();
+
+  t = !t;
+  if (t) {
+    Serial.println("Send 1");
+    SPI.transfer(1);
+    delay(1);
+  } else {
+    auto x = new char[20];
+    memset(x, 0, 20);
+    SPI.transfer(x, 20);
+    for (int i=0;i<20;i++) Serial.println((unsigned int)x[i]);
+    delete x;
+  }
+  Serial.flush();
+}
+
+
+void loop() {
+  while( digitalRead(5) == HIGH ){ delay(100); }
+
+  //if( spiCom->canInitCom() )
+  //{
+    delay(2000);
+    sendCommand();
+    
+    
+  /*
+    if( cntLoop != 0 )
+    {
+      std::vector<uint8_t> databuffer;
+      delay(5000);
+      for( uint8_t cnt = 0; cnt < *cntLoop; cnt++)
+      {
+        Serial.println("requst data byte");
+        spiCom->getDataByte();
+        databuffer.push_back( spiCom->getLastResponse() );
+        delay(5000);
+      }
+
+      for (uint8_t i = 0; i < databuffer.size(); i++)
+      {
+        Serial.println(databuffer[i]);
+      }
+      Serial.println("finished request!");
+      Serial.flush();
+    }
+    */
+
+    
+    
+    //baue den Vector zusammen
+    //befülle den Vector
+    //stelle den Vector bereit
+    //sende den Vector bei Bedarf
+
+    /* Todo
+    - vector uint8_t
+    - größe immer 256 byte (der Vector insgesammt) freier Speicher
+    - falls sensor 256 byte sendet, dann sollen diese verfügbar sein!
+    - loop durch sensor und dessen Responsedaten in den vector schreiben
+    */
+    
+  //}
+}
+
+void log(char* msg)
+{
+  Serial.println(msg);
+}
+#endif

@@ -1,3 +1,5 @@
+#ifdef NICLAS_DEV // to prevent errors
+
 #include "spicommunication.h"
 
 SPICommunication_c* spiCom;
@@ -33,3 +35,5 @@ void log(char* msg)
 {
   Serial.println(msg);
 }
+
+#endif

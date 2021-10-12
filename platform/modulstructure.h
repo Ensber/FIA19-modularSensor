@@ -31,7 +31,7 @@ typedef struct _tsModulData
 typedef struct _tsModul
 {
     tsModulData modulData;
-    
+    uint8_t chipSelect;
 } tsModul;
 
 #endif //MODULSTRUTURE_H

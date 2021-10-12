@@ -1,4 +1,3 @@
-#if 0
 #include <vector>
 #include <SPI.h>
 
@@ -43,11 +42,15 @@ void sendCommand()
     SPI.transfer(1);
     delay(1);
   } else {
-    auto x = new char[20];
-    memset(x, 0, 20);
-    SPI.transfer(x, 20);
-    for (int i=0;i<20;i++) Serial.println((unsigned int)x[i]);
-    delete x;
+    // auto x = new char[20];
+    // memset(x, 0, 20);
+    // SPI.transfer(x, 20);
+    // for (int i=0;i<20;i++) Serial.println((unsigned int)x[i]);
+    // delete x;
+    // while (true) {
+    //   int y = SPI.transfer(0);
+    // }
+    for (int i=1;i<20;i++) Serial.println(SPI.transfer(0));
   }
   Serial.flush();
 }
@@ -105,4 +108,3 @@ void log(char* msg)
 {
   Serial.println(msg);
 }
-#endif

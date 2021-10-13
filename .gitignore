@@ -1,3 +1,4 @@
 **/build
 *.json
-!arduino.json
+**/.vscode
+**/.test

@@ -34,6 +34,13 @@ tsModul gModule[_MAXMODULS];
 
 #define logLine(out) Serial.print(__LINE__); Serial.print(": "); Serial.println(out);
 
+void logData( char* p_logString )
+{
+    #if _RUNMODE == _MDEBUG
+    Serial.print(p_logString);
+    #endif //_RUNMODE == _MDEBUG
+}
+
 bool isResievedSensorIDsEqual( tuSensorID* p_pSensorId, tuSensorID* p_pSensorId2, uint8_t p_size )
 {
     for( uint8_t i = 0; i < p_size; i++ )
@@ -86,13 +93,17 @@ void stateMachine()
             spibuffer[i].data16 = 0;
         }
         SPI.transfer(spibuffer, 20);
-        logLine("resieve data: ");
+
+        #if _RUNMODE == _MDEBUG
+        logLine("resieve Sensors: ");
         for(uint8_t i = 0; i < _MAXMODULTYPES; i++)
         {
-            Serial.print(spibuffer[i].data16);
+            Serial.print(spibuffer[i].data16,HEX);
             Serial.print(", ");
         }
-        logLine("");
+        logData("\r\n");
+        #endif //_RUNMODE == _MDEBUG
+
         if( !isResievedSensorIDsEqual(gModule[0].modulData.sensorId, spibuffer, _MAXMODULTYPES) )
         {
             for(uint8_t i = 0; i < _MAXMODULTYPES; i++)
@@ -113,21 +124,27 @@ void stateMachine()
         //do something
         logLine("request data from modul");
         SPI.transfer(_REQUESTSENSORDATA);
-        delay(10000);
+        
 
         tuSensorData spiData[_MAXMODULTYPES];
         for( uint8_t i = 0; i < _MAXMODULTYPES; i++ )
         {
             spiData[i].data = 0;
         }
-        SPI.transfer(spiData, 8*_MAXMODULTYPES);
+        delay(10000);
+        SPI.transfer(spiData, (8*_MAXMODULTYPES) );
+        delay(10000);
+        SPI.transfer(spiData, (8*_MAXMODULTYPES) );
+        #if _RUNMODE == _MDEBUG
         logLine("resieve data: ");
         for(uint8_t i = 0; i < _MAXMODULTYPES; i++)
         {
             Serial.print(spiData[i].data);
             Serial.print(", ");
         }
-        logLine("");
+        logData("\r\n");
+        #endif //_RUNMODE == _MDEBUG
+
         #if _RUNMODE != _MDEBUG
         gCurrentState = _SMEND;
         #endif //_RUNMODE != _MDEBUG
@@ -164,8 +181,10 @@ void setup()
 void loop()
 {
     #if _RUNMODE == _MDEBUG
+    Serial.printf("\r\nBTN *Trigger Finish*\r\n\r\n");
     while( digitalRead(5) == HIGH ){ delay(100); }
     while( digitalRead(5) == LOW ){ delay(100); }
+    Serial.printf("\r\nBTN *Trigger*\r\n\r\n");
     gCurrentState++;
     #endif //_RUNMODE == _MDEBUG
 

@@ -32,10 +32,7 @@ tsModul gModule[_MAXMODULS];
 #if _RUNMODE == _MDEBUG
 #endif //_RUNMODE == _MDEBUG
 
-void logLine( char* p_logString )
-{
-    Serial.println(p_logString);
-}
+#define logLine(out) Serial.print(__LINE__); Serial.print(": "); Serial.println(out);
 
 bool isResievedSensorIDsEqual( tuSensorID* p_pSensorId, tuSensorID* p_pSensorId2, uint8_t p_size )
 {

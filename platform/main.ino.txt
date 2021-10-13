@@ -1,0 +1,46 @@
+#include <vector>
+#include <SPI.h>
+
+byte buff[50];
+
+
+void log(char* msg);
+
+void setup() {
+  Serial.begin(115200);
+  while(!Serial){}
+
+  SPI.begin();
+  pinMode(5, INPUT_PULLUP);
+}
+
+bool t = false;
+void sendCommand()
+{
+  t = !t;
+  if (t) {
+    Serial.println("Send 1");
+    SPI.transfer(1);
+    delay(1);
+  } else {
+    for (int i=1;i<20;i++) Serial.println(SPI.transfer(0));
+  }
+  Serial.flush();
+}
+
+
+void loop() {
+  while( digitalRead(5) == HIGH ){ ESP.wdtFeed(); }
+  while( digitalRead(5) == LOW ){ ESP.wdtFeed(); }
+  // delay(500);
+  //sendCommand();
+  Serial.println("Send 1");
+  byte buffer = 0x1;
+  SPI.transfer(0x01);
+  // delay(1);
+}
+
+void log(char* msg)
+{
+  Serial.println(msg);
+}

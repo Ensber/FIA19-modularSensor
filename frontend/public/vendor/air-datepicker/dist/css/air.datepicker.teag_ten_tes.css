@@ -1,0 +1,190 @@
+/*TEAG Corporate Design for Air Datepicker */
+
+/*widget container*/
+.datepicker {
+    border: 1px solid #b6b6b6;
+    border-radius: 2px;
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    color: #000;
+}
+
+/*pointing arrow*/
+.datepicker--pointer {
+    border-top: 1px solid #b6b6b6;
+    border-right: 1px solid #b6b6b6;
+}
+
+/*top navigation*/
+.datepicker--nav {
+    border-bottom: 1px solid #b6b6b6;
+    background-color: #870D87;
+}
+
+/*top navigation arrows*/
+.datepicker--nav-action path {
+    stroke: #fff;
+}
+
+/*top navigation title*/
+.datepicker--nav-title,
+.datepicker--nav-title i {
+    color: #fff;
+}
+
+/*top navigation hover effect*/
+.datepicker--nav-action:hover,
+.datepicker--nav-title:hover {
+    background-color: #0ba2e3;
+}
+
+/*title bar: days of week*/
+.datepicker--day-name {
+    color: #000;
+    font-weight: bold;
+}
+
+/*current date*/
+.datepicker--cell.-current- {
+    color: #0ba2e3;
+    border: 1px solid #0ba2e3;
+}
+
+/*selected date*/
+.datepicker--cell.-selected-,
+.datepicker--cell.-selected-.-current-,
+.datepicker--cell.-selected-.-focus- {
+    background-color: #870D87;
+}
+
+/*date range start/end*/
+.datepicker--cell.-range-to-,
+.datepicker--cell.-range-to-.-other-month-,
+.datepicker--cell.-range-to-.-current-,
+.datepicker--cell.-range-from-,
+.datepicker--cell.-range-from-.-other-month-,
+.datepicker--cell.-range-from-.-current- {
+    background-color: #870D87;
+    color: #fff;
+    border: none;
+}
+
+/*date range*/
+.datepicker--cell.-in-range-,
+.datepicker--cell.-in-range-.-other-month-,
+.datepicker--cell.-in-range-.-focus-,
+.datepicker--cell.-in-range-.-focus-.-other-month-,
+.datepicker--cell.-in-range-.-current- {
+    background-color: #0ba2e3;
+    color: #fff;
+}
+
+/*range on disabled date*/
+.datepicker--cell.-range-to-.-disabled-,
+.datepicker--cell.-range-to-.-other-month-.-disabled-,
+.datepicker--cell.-range-from-.-disabled-,
+.datepicker--cell.-range-from-.-other-month-.-disabled- {
+    background-color: #b6b6b6;
+    color: #fff;
+}
+
+/*range on disabled date*/
+.datepicker--cell.-in-range-.-disabled- {
+    background-color: #d6d6d6;
+    color: #fff;
+}
+
+
+/* -----------------
+    TES DESIGN
+-------------------- */
+
+/*top navigation*/
+.brand-tes .datepicker--nav {
+    background-color: #87005e;
+}
+
+/*top navigation hover effect*/
+.brand-tes .datepicker--nav-action:hover,
+.brand-tes .datepicker--nav-title:hover {
+    background-color: #87005e;
+}
+
+/*current date*/
+.brand-tes .datepicker--cell.-current- {
+    color: #c60086;
+    border: 1px solid #c60086;
+}
+
+/*selected date*/
+.brand-tes .datepicker--cell.-selected-,
+.brand-tes .datepicker--cell.-selected-.-current-,
+.brand-tes .datepicker--cell.-selected-.-focus- {
+    background-color: #87005e;
+}
+
+/*date range start/end*/
+.brand-tes .datepicker--cell.-range-to-,
+.brand-tes .datepicker--cell.-range-to-.-other-month-,
+.brand-tes .datepicker--cell.-range-to-.-current-,
+.brand-tes .datepicker--cell.-range-from-,
+.brand-tes .datepicker--cell.-range-from-.-other-month-,
+.brand-tes .datepicker--cell.-range-from-.-current- {
+    background-color: #87005e;
+}
+
+/*date range*/
+.brand-tes .datepicker--cell.-in-range-,
+.brand-tes .datepicker--cell.-in-range-.-other-month-,
+.brand-tes .datepicker--cell.-in-range-.-focus-,
+.brand-tes .datepicker--cell.-in-range-.-focus-.-other-month-,
+.brand-tes .datepicker--cell.-in-range-.-current- {
+    background-color: #c60086;
+}
+
+
+/* -----------------
+    TEN DESIGN
+-------------------- */
+
+/*top navigation*/
+.brand-ten .datepicker--nav {
+    background-color: #0d679d ;
+}
+
+/*top navigation hover effect*/
+.brand-ten .datepicker--nav-action:hover,
+.brand-ten .datepicker--nav-title:hover {
+    background-color: #0d679d ;
+}
+
+/*current date*/
+.brand-ten .datepicker--cell.-current- {
+    color: #24abe6 ;
+    border: 1px solid #24abe6 ;
+}
+
+/*selected date*/
+.brand-ten .datepicker--cell.-selected-,
+.brand-ten .datepicker--cell.-selected-.-current-,
+.brand-ten .datepicker--cell.-selected-.-focus- {
+    background-color: #0d679d ;
+}
+
+/*date range start/end*/
+.brand-ten .datepicker--cell.-range-to-,
+.brand-ten .datepicker--cell.-range-to-.-other-month-,
+.brand-ten .datepicker--cell.-range-to-.-current-,
+.brand-ten .datepicker--cell.-range-from-,
+.brand-ten .datepicker--cell.-range-from-.-other-month-,
+.brand-ten .datepicker--cell.-range-from-.-current- {
+    background-color: #0d679d ;
+}
+
+/*date range*/
+.brand-ten .datepicker--cell.-in-range-,
+.brand-ten .datepicker--cell.-in-range-.-other-month-,
+.brand-ten .datepicker--cell.-in-range-.-focus-,
+.brand-ten .datepicker--cell.-in-range-.-focus-.-other-month-,
+.brand-ten .datepicker--cell.-in-range-.-current- {
+    background-color: #24abe6 ;
+}

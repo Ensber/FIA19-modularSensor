@@ -1,0 +1,47 @@
+.table{
+    width: auto !important;
+}
+body{
+    padding: 10px;
+}
+#charts_container{
+    width: 100%;
+}
+.type_container {
+    position: relative;
+}
+.chart_box{
+    width: 70%;
+    display: inline-block;
+}
+.average_box{
+    padding-left: 20px;
+    max-width: 30%;
+    position: absolute;
+    top: 50px;
+    display: inline-block;
+}
+canvas {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+.pure-button-primary{
+    margin-top: 10px;
+}
+.errorText{
+    color: red !important;
+}
+.errorInput{
+    background-color: #fdb4b4;
+}
+.wait{
+    background-image:url("/pictures/waiting.gif");
+    width: 206px;
+    height: 120px;
+    display: inline-block;
+    float: right;
+}
+h1{
+    display: inline-block;
+}

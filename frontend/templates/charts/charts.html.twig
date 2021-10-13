@@ -1,0 +1,53 @@
+<link rel="shortcut icon" type="image/x-icon" href="pictures/wetter.jpg">
+<div class="pure-g">
+    <div class="pure-u-1-2">
+        <h1>Sensordaten</h1>
+        <div id="wait"></div>
+    </div>
+    <div class="pure-u-1-2">
+        <form class="pure-form pure-form-stacked" id="showData">
+            <div class="pure-g">
+                <div class="pure-u-1-2">
+                    <label for="begin"> Beginn</label>
+                    <input type="text" id="begin" class="datepicker-here" data-position="bottom left" data-language="de"
+                           data-timepicker="true" data-time-format='hh:ii' name="begin" autocomplete="off" required>
+                    <span class="pure-form-message-inline errorText" id="info_begin"></span>
+                    <br>
+                    <button type="submit" class="pure-button pure-button-primary">Daten Anzeigen</button>
+
+                </div>
+                <div class="pure-u-1-2">
+                    <label for="end"> Ende</label>
+                    <input type="text" id="end" class="datepicker-here" data-position="bottom left" data-language="de"
+                           data-timepicker="true" data-time-format='hh:ii' name="end" autocomplete="off" required>
+                    <span class="pure-form-message-inline errorText" id="info_end"></span>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<hr>
+<div id="charts_container">
+
+</div>
+
+
+{% block javascripts %}
+    <!--<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
+    <script src="vendor/jquery.js"></script>
+    <script src="vendor/chart.js"></script>
+    <script src="vendor/moment.js"></script>
+    <script type="application/javascript" src="{{ asset('vendor/air-datepicker/dist/js/datepicker.min.js') }}"></script>
+    <script type="application/javascript"
+            src="{{ asset('vendor/air-datepicker/dist/js/i18n/datepicker.de.js') }}"></script>
+    <script src="JavaScript/ownCharts.js"></script>
+{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css"
+          href="CSS/style.css">
+    <link rel="stylesheet" type="text/css"
+          href="CSS/pure.css">
+    <link rel="stylesheet" type="text/css"
+          href="{{ asset('vendor/air-datepicker/dist/css/datepicker.min.css') }}">
+{% endblock %}

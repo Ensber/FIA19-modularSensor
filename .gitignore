@@ -2,3 +2,23 @@
 **/build
 */lib
 **/.test
+
+###> symfony/framework-bundle ###
+/frontend/.env.local
+/frontend/.env.local.php
+/frontend/.env.*.local
+/frontend/config/secrets/prod/prod.decrypt.private.php
+/frontend/public/bundles/
+/frontend/var/
+/frontend/vendor/
+###< symfony/framework-bundle ###
+
+###> symfony/phpunit-bridge ###
+/frontend/.phpunit.result.cache
+/frontend/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+###> phpunit/phpunit ###
+/frontend/phpunit.xml
+/frontend/.phpunit.result.cache
+###< phpunit/phpunit ###

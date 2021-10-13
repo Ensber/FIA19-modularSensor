@@ -1,0 +1,27 @@
+body{
+    padding: 10px;
+}
+.container{
+    display: grid;
+    justify-content: center;
+}
+.notVisible{
+    display: none;
+}
+.pure-control-group input{
+    width: 200px;
+}
+.errorInput{
+    background-color: #fdb4b4;
+}
+.errorText{
+    color: red !important;
+}
+.testColorBox{
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    display: inline-block;
+    float: right;
+    margin-right: 100px;
+}
